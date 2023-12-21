@@ -14,7 +14,7 @@ class BankAccontController extends Controller
      */
     public function index()
     {
-        $bankAccounts = BankAccount::get();
+        $bankAccounts = BankAccount::with('user')->get();
 
         return view('bank_accounts.index', compact('bankAccounts'));
     }

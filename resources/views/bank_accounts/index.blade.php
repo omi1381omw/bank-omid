@@ -36,7 +36,7 @@
                 @foreach($bankAccounts as $bankAccount)
                 <tr>
                     <td>{{ $bankAccount->id }}</td>
-                    <td>{{ $bankAccount->user_id }}</td>
+                    <td>{{ $bankAccount->user->name }}</td>
                     <td>{{ $bankAccount->account_number }}</td>
                     <td>{{ $bankAccount->sheba }}</td>
                     <td>{{ $bankAccount->cart }}</td>
