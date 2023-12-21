@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BankAccontController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::get('/users/create', [UserController::class, 'create'])->name('create');
-Route::post('/users', [UserController::class, 'store'])->name('store');
-Route::get('/users/{id}', [UserController::class, 'show'])->name('show');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('update');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('destroy');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+
+Route::get('/bank_accounts', [BankAccontController::class, 'index'])->name('bank_accounts.index');
+Route::get('/bank_accounts/create', [BankAccontController::class, 'create'])->name('bank_accounts.create');
+Route::post('/bank_accounts', [BankAccontController::class, 'store'])->name('bank_accounts.store');
