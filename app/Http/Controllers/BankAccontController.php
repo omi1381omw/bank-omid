@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BankAccountStoreRequest;
+use App\Http\Requests\BankAccountUpdateRequest;
 use App\Models\BankAccount;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -61,9 +62,13 @@ class BankAccontController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BankAccountUpdateRequest $request, $id)
     {
-        //
+        $bankAccount = BankAccount::findOrFail($id);
+
+        $bankAccount->update($request->validated());
+
+        return redirect('bank_accounts');
     }
 
     /**

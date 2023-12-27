@@ -26,3 +26,4 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 Route::get('/bank_accounts', [BankAccontController::class, 'index'])->name('bank_accounts.index');
 Route::get('/bank_accounts/create', [BankAccontController::class, 'create'])->name('bank_accounts.create');
 Route::post('/bank_accounts', [BankAccontController::class, 'store'])->name('bank_accounts.store');
+Route::put('/bank_accounts/{id}', [BankAccontController::class, 'update'])->name('bank_accounts.update');
