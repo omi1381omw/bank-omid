@@ -33,19 +33,19 @@
             {{ csrf_field() }} @method('PUT')
             <div class="mb-3 mt-3">
                 <label for="bank_account" class="form-label">account_number:</label>
-                <input type="text" class="form-control" id="bank_account" placeholder="Enter accountNumber" name="accountNumber" value="{{ $bank_account->account_number }}">
+                <input type="text" class="form-control" id="bank_account" placeholder="Enter accountNumber" name="accountNumber" value="{{ $bankAccount->account_number }}">
             </div>
             <div class="mb-3 mt-3">
                 <label for="sheba" class="form-label">sheba:</label>
-                <input type="text" class="form-control" id="sheba" placeholder="Enter sheba" name="sheba" value="{{ $bank_account->sheba }}">
+                <input type="text" class="form-control" id="sheba" placeholder="Enter sheba" name="sheba" value="{{ $bankAccount->sheba }}">
             </div>
             <div class="mb-3 mt-3">
                 <label for="cart" class="form-label">cart:</label>
-                <input type="text" class="form-control" id="cart" placeholder="Enter cart" name="cart" value="{{ $bank_account->cart }}">
+                <input type="text" class="form-control" id="cart" placeholder="Enter cart" name="cart" value="{{ $bankAccount->cart }}">
             </div>
             <div class="mb-3 mt-3">
                 <label for="balance" class="form-label">balance:</label>
-                <input type="text" class="form-control" id="balance" placeholder="Enter balance" name="balance" value="{{ $bank_account->balance }}">
+                <input type="text" class="form-control" id="balance" placeholder="Enter balance" name="balance" value="{{ $bankAccount->balance }}">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

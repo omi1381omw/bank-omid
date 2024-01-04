@@ -56,7 +56,9 @@ class BankAccontController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $bankAccount = BankAccount::findOrFail($id);
+
+        return view('bank_accounts.edit', compact('bankAccount'));
     }
 
     /**
