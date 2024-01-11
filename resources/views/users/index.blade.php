@@ -22,7 +22,7 @@
             <p>
                 <a href="/users/create" class="btn btn-info">Create User</a>
             </p>
-            @if ($errors->any())
+            @if($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
