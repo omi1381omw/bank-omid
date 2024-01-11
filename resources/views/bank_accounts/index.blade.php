@@ -36,7 +36,7 @@
                 @foreach($bankAccounts as $bankAccount)
                 <tr>
                     <td>{{ $bankAccount->id }}</td>
-                    <td>{{ $bankAccount->user->name }}</td>
+                    <td>{{ $bankAccount->user?->name }}</td>
                     <td>{{ $bankAccount->account_number }}</td>
                     <td>{{ $bankAccount->sheba }}</td>
                     <td>{{ $bankAccount->cart }}</td>
@@ -44,7 +44,11 @@
                     <td>{{ $bankAccount->created_at }}</td>
                     <td>
                         <a href="/bank_accounts/{{ $bankAccount->id }}" class="btn btn-info">Edit</a>
-                        <button class="btn btn-danger">Delete</button>
+                        <form action="/bank_accounts/{{ $bankAccount->id }}" method="post">
+                            @method('DELETE') {{ csrf_field() }}
+                            <input type="hidden" value="{{ $bankAccount->id }}">
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

@@ -29,11 +29,11 @@
             </ul>
         </div>
         @endif
-        <form action="/bank_accounts/{{ $bank_account->id }}" method="post">
+        <form action="/bank_accounts/{{ $bankAccount->id }}" method="post">
             {{ csrf_field() }} @method('PUT')
             <div class="mb-3 mt-3">
                 <label for="bank_account" class="form-label">account_number:</label>
-                <input type="text" class="form-control" id="bank_account" placeholder="Enter accountNumber" name="accountNumber" value="{{ $bankAccount->account_number }}">
+                <input type="text" class="form-control" id="account_number" placeholder="Enter accountNumber" name="account_number" value="{{ $bankAccount->account_number }}">
             </div>
             <div class="mb-3 mt-3">
                 <label for="sheba" class="form-label">sheba:</label>

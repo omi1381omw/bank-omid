@@ -23,9 +23,9 @@ class BankAccountUpdateRequest extends FormRequest
     {
         return [
             'account_number' => 'required|max:24',
-            'sheba' => 'required|max:24|email|unique:bank_accounts,sheba,' . $this->id,
+            'sheba' => 'required|max:24|unique:bank_accounts,sheba,' . $this->id,
             'cart' => 'required|max:16|unique:bank_accounts,cart,' . $this->id,
-            'balance' => 'required|max:200|unique:bank_accounts,balance,' . $this->id,
+            'balance' => 'required|max:200',
         ];
     }
 }

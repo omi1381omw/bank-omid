@@ -6,6 +6,7 @@ use App\Http\Requests\BankAccountStoreRequest;
 use App\Http\Requests\BankAccountUpdateRequest;
 use App\Models\BankAccount;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class BankAccontController extends Controller
@@ -76,8 +77,19 @@ class BankAccontController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $bankaccount = BankAccount::findOrFail($id);
+
+        try{
+            $bankaccount->delete();
+        }
+        catch(QueryException $e){
+            return redirect('bank_account')->withErrors([
+                'msg' => sprintf('user %d has bank account', $bankaccount->id)
+            ]);
+        }
+        
+        return redirect('bank_account');
     }
 }

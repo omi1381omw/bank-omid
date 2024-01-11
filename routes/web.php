@@ -47,4 +47,5 @@ Route::middleware('auth')
         Route::post('/bank_accounts', [BankAccontController::class, 'store'])->name('bank_accounts.store');
         Route::get('/bank_accounts/{id}', [BankAccontController::class, 'edit'])->name('bank_accounts.edit');
         Route::put('/bank_accounts/{id}', [BankAccontController::class, 'update'])->name('bank_accounts.update');
+        Route::delete('/bank_accounts/{id}', [BankAccontController::class, 'destroy'])->name('bank_accounts.destroy');
     });
