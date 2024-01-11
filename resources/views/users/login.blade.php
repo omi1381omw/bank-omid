@@ -20,7 +20,7 @@
 <body class="antialiased">
 
     <div class="col-md-6">
-        @if($error)
+        @if(isset($error))
         <div class="alert alert-danger">
             <ul>
                 <li>{{ $error }}</li>

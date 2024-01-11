@@ -7,6 +7,7 @@ use App\Http\Requests\UserRegisterAuthRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -91,6 +92,23 @@ class UserController extends Controller
 
         $user->update($request->validated());
 
+        return redirect('users');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        // dd($id);
+        $user = User::findOrFail($id);
+
+        try{
+            $user->delete();
+        }
+        catch(QueryException $e){
+            return redirect('users')->withErrors([
+                'msg' => sprintf('user %s has bank account', $user->name)
+            ]);
+        }
+        
         return redirect('users');
     }
 }

@@ -22,6 +22,15 @@
             <p>
                 <a href="/users/create" class="btn btn-info">Create User</a>
             </p>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <table border="1">
                 <tr>
                     <th>ID</th>
@@ -42,7 +51,11 @@
                     <td>{{ $user->created_at }}</td>
                     <td>
                         <a href="/users/{{ $user->id }}" class="btn btn-info">Edit</a>
-                        <button class="btn btn-danger">Delete</button>
+                        <form action="/users/{{ $user->id }}" method="post">
+                            @method('DELETE') {{ csrf_field() }}
+                            <input type="hidden" value="{{ $user->id }}">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
