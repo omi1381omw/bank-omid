@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BankAccontController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,16 +16,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->name('home');
+
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'auth'])->name('auth');
+
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register', [UserController::class, 'registerAuth'])->name('users.registerAuth');
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 
-Route::get('/bank_accounts', [BankAccontController::class, 'index'])->name('bank_accounts.index');
-Route::get('/bank_accounts/create', [BankAccontController::class, 'create'])->name('bank_accounts.create');
-Route::post('/bank_accounts', [BankAccontController::class, 'store'])->name('bank_accounts.store');
-Route::get('/bank_accounts/{id}', [BankAccontController::class, 'edit'])->name('bank_accounts.edit');
-Route::put('/bank_accounts/{id}', [BankAccontController::class, 'update'])->name('bank_accounts.update');
+Route::get('/register', [UserController::class, 'register'])->name('register');
+
+Route::middleware('auth')
+    ->group(function () {
+
+        // Users
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+        // Bank accounts
+        Route::get('/bank_accounts', [BankAccontController::class, 'index'])->name('bank_accounts.index');
+        Route::get('/bank_accounts/create', [BankAccontController::class, 'create'])->name('bank_accounts.create');
+        Route::post('/bank_accounts', [BankAccontController::class, 'store'])->name('bank_accounts.store');
+        Route::get('/bank_accounts/{id}', [BankAccontController::class, 'edit'])->name('bank_accounts.edit');
+        Route::put('/bank_accounts/{id}', [BankAccontController::class, 'update'])->name('bank_accounts.update');
+    });
