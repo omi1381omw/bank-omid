@@ -20,7 +20,7 @@
     <div style="margin-top: 20px;">
         <div class="col-lg-12">
             <p>
-                <a href="/users/create" class="btn btn-info">Create User</a>
+                <a href="/roles/create" class="btn btn-info">Create role</a>
             </p>
             @if($errors->any())
             <div class="alert alert-danger">
@@ -34,29 +34,23 @@
             <table border="1">
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Mobile</th>
-                    <th>National Code</th>
-                    <th>Register Data</th>
+                    <th>slug</th>
+                    <th>name</th>
                     <th>Action</th>
                 </tr>
-                @foreach($users as $user)
+                @foreach($roles as $role)
                 <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->mobile }}</td>
-                    <td>{{ $user->national_code }}</td>
-                    <td>{{ $user->created_at }}</td>
+                    <td>{{ $role->id }}</td>
+                    <td>{{ $role->slug }}</td>
+                    <td>{{ $role->name }}</td>
+
                     <td>
-                        <a href="/users/{{ $user->id }}" class="btn btn-info">Edit</a>
-                        <form action="/users/{{ $user->id }}" method="post">
+                        <a href="/roles/{{ $role->id }}" class="btn btn-info">Edit</a>
+                        <form action="/roles/{{ $role->id }}" method="post">
                             @method('DELETE') {{ csrf_field() }}
-                            <input type="hidden" value="{{ $user->id }}">
+                            <input type="hidden" value="{{ $role->id }}">
                             <button class="btn btn-danger">Delete</button>
                         </form>
-                        <a href="/roles/{{ $user->id }}" class="btn btn-warning">Roles</a>
                     </td>
                 </tr>
                 @endforeach
