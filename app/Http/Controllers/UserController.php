@@ -6,6 +6,9 @@ use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterAuthRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Jobs\UserGoodbyJob;
+use App\Jobs\UserLoginJob;
+use App\Jobs\WelcomeUserJob;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -28,12 +31,18 @@ class UserController extends Controller
             return view('users.login', ['error' => 'mobile or password is invalid']);
         }
 
+        UserLoginJob::dispatch(Auth::user());
+
         return redirect('/');
     }
 
     public function logout()
     {
+        $user = Auth::user();
+
         Auth::logout();
+
+        UserGoodbyJob::dispatch($user);
 
         return view('welcome');
     }
@@ -50,6 +59,8 @@ class UserController extends Controller
         $user = User::firstOrCreate($inputs);
 
         Auth::login($user);
+
+        WelcomeUserJob::dispatch($user);
 
         return redirect('users');
     }
