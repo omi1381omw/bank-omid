@@ -47,6 +47,9 @@ Route::middleware('auth')
         Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
         Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
         Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
+        Route::get('/roles/{id}', [RoleController::class, 'edit'])->name('roles.edit');
+        Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
+        Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
 
         // Bank accounts
         Route::get('/bank_accounts', [BankAccontController::class, 'index'])->name('bank_accounts.index');
