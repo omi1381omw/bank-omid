@@ -1,56 +1,46 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('master')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Bank Omid</title>
+@section('content')
 
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+@if(isset($error))
+<div class="alert alert-danger">
+    <ul>
+        <li>{{ $error }}</li>
+    </ul>
+</div>
+@endif
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
-<body class="antialiased">
 
-    <div class="col-md-6">
-        @if(isset($error))
-        <div class="alert alert-danger">
-            <ul>
-                <li>{{ $error }}</li>
-            </ul>
-        </div>
-        @endif
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-        <form action="/login" method="post">
-            {{ csrf_field() }}
-            <div class="mb-3 mt-3">
-                <label for="mobile" class="form-label">Mobile:</label>
+<div class="card card-primary">
+<form action="/login" method="post">
+    {{ csrf_field() }}
+        <div class="card-body">
+            <div class="form-group">
+                <label for="mobile">موبایل : </label>
                 <input type="text" class="form-control" id="mobile" placeholder="9362919101" name="mobile" value="{{ old('mobile') }}">
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" value="{{ old('password') }}">
+            <div class="form-group">
+                <label for="password">رمز عبور : </label>
+                <input type="password" class="form-control" id="password" placeholder="رمز عبور" name="password" value="{{ old('password') }}">
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-            <a href="/register" class="btn btn-info">Register</a>
-        </form>
+        </div>
 
-    </div>
-</body>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">ورود</button>
+        </div>
+    </form>
+</div>
 
-</html>
+
+
+@endsection
