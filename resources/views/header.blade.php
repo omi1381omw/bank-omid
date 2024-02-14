@@ -161,6 +161,13 @@
       </a>
     </li>
     @endguest
+    @guest
+    <li class="nav-item">
+      <a class="nav-link"  href="/register">
+        ثبت نام
+      </a>
+    </li>
+    @endguest
     @auth
     <li class="nav-item">
       <a class="nav-link" href="/logout">

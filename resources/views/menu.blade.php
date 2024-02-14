@@ -55,15 +55,28 @@
             </li>
           </ul>
         </li>
+        @guest
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              Widgets
+            New
               <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
+        @endguest
+        @auth
+        <li class="nav-item">
+          <a href="/users" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              کاربران
+              <span class="right badge badge-danger">New</span>
+            </p>
+          </a>
+        </li>
+        @endauth
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>

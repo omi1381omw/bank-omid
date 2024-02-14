@@ -1,55 +1,49 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('master')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
 
-    <title>Bank Omid</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-</head>
+    @if(isset($error))
+<div class="alert alert-danger">
+    <ul>
+        <li>{{ $error }}</li>
+    </ul>
+</div>
+@endif
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
-<body class="antialiased">
-
-    <div class="col-md-6">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
+<div class="col-md-6">
         <form action="/register" method="post">
+
             {{ csrf_field() }}
             <div class="mb-3 mt-3">
-                <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="{{ old('name') }}">
+                <label for="name" class="form-label">نام:</label>
+                <input type="text" class="form-control" id="name" placeholder="نام" name="name" value="{{ old('name') }}">
             </div>
             <div class="mb-3 mt-3">
-                <label for="mobile" class="form-label">Mobile:</label>
-                <input type="text" class="form-control" id="mobile" placeholder="Enter mobile" name="mobile" value="{{ old('mobile') }}">
+                <label for="mobile" class="form-label">موبایل :</label>
+                <input type="text" class="form-control" id="mobile" placeholder="موبایل" name="mobile" value="{{ old('mobile') }}">
             </div>
             <div class="mb-3 mt-3">
-                <label for="national_code" class="form-label">National Code:</label>
-                <input type="text" class="form-control" id="national_code" placeholder="Enter national code" name="national_code" value="{{ old('national_code') }}">
+                <label for="national_code" class="form-label">کد ملی:</label>
+                <input type="text" class="form-control" id="national_code" placeholder="کد ملی" name="national_code" value="{{ old('national_code') }}">
             </div>
             <div class="mb-3 mt-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ old('email') }}">
+                <label for="email" class="form-label">ایمیل :</label>
+                <input type="email" class="form-control" id="email" placeholder="ایمیل" name="email" value="{{ old('email') }}">
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" value="{{ old('password') }}">
+                <label for="password" class="form-label">رمز عبور :</label>
+                <input type="password" class="form-control" id="password" placeholder="رمز عبور" name="password" value="{{ old('password') }}">
             </div>
             <button type="submit" class="btn btn-primary">register</button>
             <a href="/login" class="btn btn-info">login</a>
@@ -57,6 +51,4 @@
 
     </div>
 
-</body>
-
-</html>
+    @endsection

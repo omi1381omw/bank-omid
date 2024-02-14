@@ -62,7 +62,7 @@ class UserController extends Controller
 
         WelcomeUserJob::dispatch($user);
 
-        return redirect('users');
+        return view('welcome');
     }
 
 
