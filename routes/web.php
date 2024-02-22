@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BankAccontController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PermisionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,9 @@ Route::middleware('auth')
         Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
         Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+        // Permision
+        Route::get('/permisions/{id}', [PermisionController::class, 'show'])->name('permisions.show');
         
 
         // Roles

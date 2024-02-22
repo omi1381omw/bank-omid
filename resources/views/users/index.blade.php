@@ -56,7 +56,7 @@
                             <input type="hidden" value="{{ $user->id }}">
                             <button class="btn btn-danger">Delete</button>
                         </form>
-                        <a href="/roles/{{ $user->id }}" class="btn btn-warning">Roles</a>
+                        <a href="/permisions/{{ $user->id }}" class="btn btn-warning">Roles</a>
                     </td>
                 </tr>
                 @endforeach
