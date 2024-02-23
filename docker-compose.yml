@@ -101,6 +101,19 @@ services:
             - '${PUSHER_METRICS_PORT:-9601}:9601'
         networks:
             - sail
+    elastic:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.6.2
+        volumes:
+            - 'sail-elasticsearch:/usr/share/elasticsearch/data'
+        ports:
+            - '9201:9200'
+            - '9302:9300'
+        environment:
+            - discovery.type=single-node
+            - ES_JAVA_OPTS=-Xms512m -Xmx512m
+            - xpack.security.enabled=false
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
@@ -112,4 +125,6 @@ volumes:
     sail-mariadb:
         driver: local
     sail-meilisearch:
+        driver: local
+    sail-elasticsearch:
         driver: local
