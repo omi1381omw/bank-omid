@@ -10,7 +10,13 @@ class BankAccount extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const NORMAL = 0;
+    public const CHECK = 1;
+    public const LOAN = 2;
+    public const SAVING = 3;
+
     protected $fillable = [
+        'type',
         'account_number',
         'user_id',
         'sheba',

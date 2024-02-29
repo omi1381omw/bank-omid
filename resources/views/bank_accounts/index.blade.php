@@ -28,7 +28,8 @@
             <table border="1">
                 <tr>
                     <th>ID</th>
-                    <th>کاربر مالک</th>
+                    <th>صاحب حساب</th>
+                    <th>نوع حساب</th>
                     <th>شماره حساب</th>
                     <th>شماره شبا</th>
                     <th>شماره کارت</th>
@@ -40,6 +41,7 @@
                 <tr>
                     <td>{{ $bankAccount->id }}</td>
                     <td>{{ $bankAccount->user?->name }}</td>
+                    <td>{{ $bankAccount->type }}</td>
                     <td>{{ $bankAccount->account_number }}</td>
                     <td>{{ $bankAccount->sheba }}</td>
                     <td>{{ $bankAccount->cart }}</td>

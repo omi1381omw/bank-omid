@@ -22,6 +22,7 @@ class BankAccountUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type'=> 'required|numeric',
             'account_number' => 'required|max:24',
             'sheba' => 'required|max:24|unique:bank_accounts,sheba,' . $this->id,
             'cart' => 'required|max:16|unique:bank_accounts,cart,' . $this->id,

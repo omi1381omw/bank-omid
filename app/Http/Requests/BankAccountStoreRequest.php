@@ -22,6 +22,7 @@ class BankAccountStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type'=> 'required|numeric',
             'account_number' => 'required|numeric',
             'user_id' => 'required|numeric|exists:users,id',
             'sheba' => 'required|numeric|digits:24',
