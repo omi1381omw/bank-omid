@@ -44,7 +44,8 @@ Route::middleware('auth')
 
         // Permision
         Route::get('/permisions/{id}', [PermisionController::class, 'show'])->name('permisions.show');
-        
+        Route::post('/permisions/{id}', [PermisionController::class, 'store'])->name('permisions.store');
+        Route::delete('/permisions/{id}', [PermisionController::class, 'destroy'])->name('permisions.destroy');
 
         // Roles
         Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
