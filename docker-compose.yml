@@ -27,10 +27,12 @@ services:
             - minio
             - mariadb
             - meilisearch
+            - mailpit
+            - soketi
     redis:
         image: 'redis:alpine'
         ports:
-            - '6379:6379'
+            - '6378:6379'
         volumes:
             - 'sail-redis:/data'
         networks:
@@ -57,7 +59,7 @@ services:
     mariadb:
         image: 'mariadb:10'
         ports:
-            - '3306:3306'
+            - '3307:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_HOST: '%'
@@ -79,6 +81,39 @@ services:
             - 'sail-meilisearch:/meili_data'
         networks:
             - sail
+    mailpit:
+        image: 'axllent/mailpit:latest'
+        ports:
+            - '${FORWARD_MAILPIT_PORT:-1025}:1025'
+            - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
+        networks:
+            - sail
+    soketi:
+        image: 'quay.io/soketi/soketi:latest-16-alpine'
+        environment:
+            SOKETI_DEBUG: '${SOKETI_DEBUG:-1}'
+            SOKETI_METRICS_SERVER_PORT: '9601'
+            SOKETI_DEFAULT_APP_ID: '${PUSHER_APP_ID}'
+            SOKETI_DEFAULT_APP_KEY: '${PUSHER_APP_KEY}'
+            SOKETI_DEFAULT_APP_SECRET: '${PUSHER_APP_SECRET}'
+        ports:
+            - '${PUSHER_PORT:-6001}:6001'
+            - '${PUSHER_METRICS_PORT:-9601}:9601'
+        networks:
+            - sail
+    elastic:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.6.2
+        volumes:
+            - 'sail-elasticsearch:/usr/share/elasticsearch/data'
+        ports:
+            - '9201:9200'
+            - '9302:9300'
+        environment:
+            - discovery.type=single-node
+            - ES_JAVA_OPTS=-Xms512m -Xmx512m
+            - xpack.security.enabled=false
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
@@ -90,4 +125,6 @@ volumes:
     sail-mariadb:
         driver: local
     sail-meilisearch:
+        driver: local
+    sail-elasticsearch:
         driver: local
