@@ -28,7 +28,7 @@ services:
             - mariadb
             - meilisearch
             - mailpit
-            - soketi
+            # - soketi
     redis:
         image: 'redis:alpine'
         ports:
