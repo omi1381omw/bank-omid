@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Customer\UserController as CustomerUserController;
+use App\Http\Controllers\Guest\BankAccountController;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\UserController;
 use Illuminate\Support\Facades\Route;
@@ -16,23 +18,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
-
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'auth'])->name('auth');
-
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/register', [UserController::class, 'registerAuth'])->name('users.registerAuth');
 
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-
 
 // open account
-Route::get('/bank_accounts/open', [BankAccontController::class, 'open'])->name('open');
-Route::post('/bank_accounts/open', [BankAccontController::class, 'perform'])->name('perform');
+Route::get('/bank_accounts/open', [BankAccountController::class, 'open'])->name('open');
+Route::post('/bank_accounts/open', [BankAccountController::class, 'perform'])->name('perform');
 
+// Customer
 Route::middleware('auth')
     ->group(function () {
+        Route::get('/logout', [CustomerUserController::class, 'logout'])->name('logout');
+    });
 
+// Admin
+Route::middleware('auth, admin')
+    ->prefix('admin')
+    ->group(function () {
         // Users
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/create', [UserController::class, 'create'])->name('users.create');

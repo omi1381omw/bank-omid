@@ -49,14 +49,6 @@ class BankAccontController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function open()
-    {
-        return view('bank_accounts/open');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
@@ -95,28 +87,6 @@ class BankAccontController extends Controller
         }
         
         return redirect('bank_account');
-    }
-
-    public function perform(BankAccountOpenRequest $request)
-    {
-       $inputs = $request->validated();
-
-       $user = User::create($request->validated());
-
-       Auth::login($user);
-
-       WelcomeUserJob::dispatch($user);
-
-       $inputs['balance'] = 0;
-       $inputs['account_number'] = random_int(1000,2000);
-       $inputs['user_id'] = $user->id;
-       $inputs['sheba'] = '123456987456258769521235';
-       $inputs['cart'] = '6037697575774184';
-
-       BankAccount::create($inputs);
-
-       return redirect('/');
-
     }
 }
 

@@ -24,7 +24,7 @@ class UserController extends Controller
         $success = Auth::attempt(['mobile' => $inputs['mobile'], 'password' => $inputs['password']]);
 
         if(!$success) {
-            return view('users.login', ['error' => 'mobile or password is invalid']);
+            return view('guest.login', ['error' => 'mobile or password is invalid']);
         }
 
         UserLoginJob::dispatch(Auth::user());
@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function register()
     {
-        return view('users.register');
+        return view('guest.register');
     }
 
     public function registerAuth(UserRegisterRequest $request)
@@ -47,6 +47,6 @@ class UserController extends Controller
 
         WelcomeUserJob::dispatch($user);
 
-        return view('welcome');
+        return view('guest.welcome');
     }
 }
