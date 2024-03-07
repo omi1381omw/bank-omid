@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BankAccountOpenRequest;
 use App\Http\Requests\BankAccountStoreRequest;
 use App\Http\Requests\BankAccountUpdateRequest;
+use App\Jobs\WelcomeUserJob;
 use App\Models\BankAccount;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BankAccontController extends Controller
 {
@@ -47,9 +50,9 @@ class BankAccontController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function open()
     {
-        //
+        return view('bank_accounts/open');
     }
 
     /**
@@ -92,4 +95,27 @@ class BankAccontController extends Controller
         
         return redirect('bank_account');
     }
+
+    public function perform(BankAccountOpenRequest $request)
+    {
+       $inputs = $request->validated();
+
+       $user = User::create($request->validated());
+
+       Auth::login($user);
+
+       WelcomeUserJob::dispatch($user);
+
+       $inputs['balance'] = 0;
+       $inputs['account_number'] = random_int(1000,2000);
+       $inputs['user_id'] = $user->id;
+       $inputs['sheba'] = '123456987456258769521235';
+       $inputs['cart'] = '6037697575774184';
+
+       BankAccount::create($inputs);
+
+       return redirect('/');
+
+    }
 }
+

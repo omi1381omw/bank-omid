@@ -29,7 +29,9 @@ Route::post('/register', [UserController::class, 'registerAuth'])->name('users.r
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 
-Route::get('/register', [UserController::class, 'register'])->name('register');
+// open account
+Route::get('/bank_accounts/open', [BankAccontController::class, 'open'])->name('open');
+Route::post('/bank_accounts/open', [BankAccontController::class, 'perform'])->name('perform');
 
 Route::middleware('auth')
     ->group(function () {

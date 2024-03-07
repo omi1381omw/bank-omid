@@ -91,10 +91,34 @@
             </li>
           </ul>
         </li>
+        @elsecan('customer')
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-setting-alt"></i>
+            <p>
+              مدیریت حساب ها
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <!-- <li class="nav-item">
+              <a href="/bank_accounts/open" class="nav-link active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>ایجاد حساب</p>
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a href="/customer/bank_accounts" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>لیست حساب</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         @endcan
         @guest
         <li class="nav-item has-treeview ">
-          <a href="#" class="nav-link active">
+          <a href="/bank_accounts/open" class="nav-link active">
             <i class="nav-icon fas fa-setting-alt"></i>
             <p>افتتاح حساب</p>
           </a>
