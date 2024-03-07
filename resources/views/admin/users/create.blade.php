@@ -1,5 +1,3 @@
-
-
 @extends('master')
 
 @section('content')
@@ -33,7 +31,7 @@
             </ul>
         </div>
         @endif
-        <form action="/users" method="post">
+        <form action="/admin/users" method="post">
             {{ csrf_field() }}
             <div class="mb-3 mt-3">
                 <label for="name" class="form-label">نام:</label>
@@ -56,7 +54,7 @@
                 <input type="password" class="form-control" id="password" placeholder="رمز عبور..." name="password" value="{{ old('password') }}">
             </div>
             <button type="submit" class="btn btn-primary">ارسال</button>
-            <a href="/users" class="btn btn-info">لیست کاربر ها</a>
+            <a href="/admin/users" class="btn btn-info">لیست کاربر ها</a>
         </form>
 
     </div>

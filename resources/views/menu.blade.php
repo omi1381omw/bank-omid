@@ -32,13 +32,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/users/create" class="nav-link active">
+              <a href="/admin/users/create" class="nav-link active">
                 <i class="far fa-bell nav-icon"></i>
                 <p>ایجاد کاربر</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/users" class="nav-link">
+              <a href="/admin/users" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>لیست کاربران</p>
               </a>
@@ -55,13 +55,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/roles/create" class="nav-link active">
+              <a href="/admin/roles/create" class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
                 <p>ایجاد نقش</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/roles" class="nav-link">
+              <a href="/admin/roles" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>لیست نقش ها</p>
               </a>
@@ -78,13 +78,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/bank_accounts/create" class="nav-link active">
+              <a href="/admin/bank_accounts/create" class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
                 <p>ایجاد حساب</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/bank_accounts" class="nav-link">
+              <a href="/admin/bank_accounts" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>لیست حساب</p>
               </a>
@@ -108,7 +108,7 @@
               </a>
             </li> -->
             <li class="nav-item">
-              <a href="/customer/bank_accounts" class="nav-link">
+              <a href="/bank_accounts" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>لیست حساب</p>
               </a>

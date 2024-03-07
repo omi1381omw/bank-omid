@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BankAccountOpenRequest;
 use App\Http\Requests\BankAccountStoreRequest;
 use App\Http\Requests\BankAccountUpdateRequest;
-use App\Jobs\WelcomeUserJob;
 use App\Models\BankAccount;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class BankAccontController extends Controller
+class BankAccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +19,7 @@ class BankAccontController extends Controller
     {
         $bankAccounts = BankAccount::with('user')->get();
 
-        return view('bank_accounts.index', compact('bankAccounts'));
+        return view('admin.bank_accounts.index', compact('bankAccounts'));
     }
 
     /**

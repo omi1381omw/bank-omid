@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RoleStoreRequest;
-use App\Http\Requests\RoleUpdateRequest;
+use App\Http\Requests\Admin\RoleStoreRequest;
+use App\Http\Requests\Admin\RoleUpdateRequest;
 use App\Models\Role;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class RoleController extends Controller
     {
         $roles=Role::get();
 
-        return view('roles.index', compact('roles'));
+        return view('admin.roles.index', compact('roles'));
     }
 
     public function create()
@@ -27,14 +27,14 @@ class RoleController extends Controller
     {
        Role::create($request->validated());
 
-        return redirect('roles');
+        return redirect('admin.roles');
     }
 
     public function edit(string $id)
     {
         $role  = Role::findOrFail($id);
 
-        return view('roles.edit', compact('role'));
+        return view('admin.roles.edit', compact('role'));
     }
 
     public function update(RoleUpdateRequest $request, $id) 
@@ -43,12 +43,11 @@ class RoleController extends Controller
 
         $role->update($request->validated());
 
-        return redirect('roles');
+        return redirect('admin.roles');
     }
 
     public function destroy(Request $request, $id)
     {
-        // dd($id);
         $role = Role::findOrFail($id);
 
         try{
@@ -60,6 +59,6 @@ class RoleController extends Controller
             ]);
         }
         
-        return redirect('roles');
+        return redirect('admin.roles');
     }
 }

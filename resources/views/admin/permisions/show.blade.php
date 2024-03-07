@@ -36,7 +36,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-success">ارسال</button>
-                <a href="/users" class="btn btn-info">لیست کاربر ها</a>
+                <a href="/admin/users" class="btn btn-info">لیست کاربر ها</a>
             </div>
         </form>
     </div>
@@ -57,7 +57,7 @@
                         <td>{{ $role->id }}</td>
                         <td>{{ $role->name }}</td>
                         <td>
-                            <form action="/permisions/{{ $user->id }}" method="post">
+                            <form action="/admin/permisions/{{ $user->id }}" method="post">
                                 @method('DELETE') {{ csrf_field() }}
                                 <input name="role_id" type="hidden" value="{{ $role->id }}">
                                 <button class="btn btn-danger"><i class="fas fa-trash"></i></button>

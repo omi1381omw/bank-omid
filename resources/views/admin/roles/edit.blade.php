@@ -29,7 +29,7 @@
             </ul>
         </div>
         @endif
-        <form action="/roles/{{ $role->id }}" method="post">
+        <form action="/admin/roles/{{ $role->id }}" method="post">
             {{ csrf_field() }} @method('PUT')
             <div class="mb-3 mt-3">
                 <label for="slug" class="form-label">slug:</label>
@@ -40,7 +40,7 @@
                 <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="{{ $role->name }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="/roles" class="btn btn-info">Role List</a>
+            <a href="/admin/roles" class="btn btn-info">Role List</a>
         </form>
 
     </div>

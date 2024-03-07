@@ -31,7 +31,7 @@
         </ul>
     </div>
     @endif
-    <form action="/roles" method="post">
+    <form action="/admin/roles" method="post">
         {{ csrf_field() }}
         <div class="mb-3 mt-3">
             <label for="slug" class="form-label">slug:</label>
@@ -43,7 +43,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">ارسال</button>
-        <a href="/roles" class="btn btn-info">لیست نقش ها</a>
+        <a href="/admin/roles" class="btn btn-info">لیست نقش ها</a>
     </form>
 
 </div>

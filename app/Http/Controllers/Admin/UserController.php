@@ -3,40 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserLoginRequest;
-use App\Http\Requests\UserRegisterRequest;
-use App\Http\Requests\UserStoreRequest;
-use App\Http\Requests\UserUpdateRequest;
-use App\Jobs\UserGoodbyJob;
+use App\Http\Requests\Admin\UserStoreRequest;
+use App\Http\Requests\Admin\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function logout()
-    {
-        $user = Auth::user();
-
-        Auth::logout();
-
-        UserGoodbyJob::dispatch($user);
-
-        return view('welcome');
-    }
-
-
     public function index()
     {
         $users = User::get();
 
-        return view('users.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     public function create()
     {
-        return view('users.create');
+        return view('admin.users.create');
     }
 
     public function store(UserStoreRequest $request)
@@ -46,16 +30,11 @@ class UserController extends Controller
         return redirect('users');
     }
 
-    public function show(Request $request, $id)
-    {
-        //
-    }
-
     public function edit(string $id)
     {
         $user  = User::findOrFail($id);
 
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     public function update(UserUpdateRequest $request, $id) 
@@ -64,7 +43,7 @@ class UserController extends Controller
 
         $user->update($request->validated());
 
-        return redirect('users');
+        return redirect('admin.users');
     }
 
     public function destroy(Request $request, $id)
@@ -81,6 +60,6 @@ class UserController extends Controller
             ]);
         }
         
-        return redirect('users');
+        return redirect('admin.users');
     }
 }

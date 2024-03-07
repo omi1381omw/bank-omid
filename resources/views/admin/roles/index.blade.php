@@ -23,7 +23,7 @@
 <div style="margin-top: 20px;">
     <div class="col-lg-12">
         <p>
-            <a href="/roles/create" class="btn btn-info">ایجاد نقش</a>
+            <a href="/admin/roles/create" class="btn btn-info">ایجاد نقش</a>
         </p>
         @if($errors->any())
         <div class="alert alert-danger">
@@ -49,7 +49,7 @@
                 <td>
                     <div style="float: right; width: 88px; margin-right: 10px;">
 
-                        <a href="/roles/{{ $role->id }}" class="btn btn-info">ویرایش</a>
+                        <a href="/admin/roles/{{ $role->id }}" class="btn btn-info">ویرایش</a>
 
                     </div>
                 </td>

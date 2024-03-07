@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PermissionDeleteRequest;
-use App\Http\Requests\PermissionStoreRequest;
+use App\Http\Requests\Admin\PermissionDeleteRequest;
+use App\Http\Requests\Admin\PermissionStoreRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class PermisionController extends Controller
 
         $rolesList = Role::all();
 
-        return view('permisions.show', compact('user', 'roles', 'rolesList')); 
+        return view('admin.permisions.show', compact('user', 'roles', 'rolesList')); 
     }
 
     public function store(PermissionStoreRequest $request, $id)
@@ -30,7 +30,7 @@ class PermisionController extends Controller
 
         $user->roles()->attach(['role_id' => $request->role_id]);
 
-        return redirect('permisions/' . $user->id);
+        return redirect('admin/permisions/' . $user->id);
     }
 
     public function destroy(PermissionDeleteRequest $request, $id)
@@ -39,7 +39,7 @@ class PermisionController extends Controller
 
         $user->roles()->detach(['role_id' => $request->role_id]);
 
-        return redirect('permisions/' . $user->id);
+        return redirect('/admin/permisions/' . $user->id);
     }
 
 }

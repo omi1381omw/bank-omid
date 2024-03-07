@@ -24,7 +24,7 @@
 <div style="margin-top: 20px;">
         <div class="col-lg-12">
             <p>
-                <a href="/users/create" class="btn btn-info">ایجاد کاربر</a>
+                <a href="/admin/users/create" class="btn btn-info">ایجاد کاربر</a>
             </p>
             @if($errors->any())
             <div class="alert alert-danger">
@@ -54,13 +54,13 @@
                     <td>{{ $user->national_code }}</td>
                     <td>{{ $user->created_at }}</td>
                     <td width=250>
-                      <div style="float: right; width: 88px; margin-right: 10px;">  <a href="/users/{{ $user->id }}" class="btn btn-info">ویرایش</a></div>
-                      <div style="float: right;  width: 70px;"> <form action="/users/{{ $user->id }}" method="post">
+                      <div style="float: right; width: 88px; margin-right: 10px;">  <a href="/admin/users/{{ $user->id }}" class="btn btn-info">ویرایش</a></div>
+                      <div style="float: right;  width: 70px;"> <form action="/admin/users/{{ $user->id }}" method="post">
                             @method('DELETE') {{ csrf_field() }}
                             <input type="hidden" value="{{ $user->id }}">
                             <button class="btn btn-danger">حذف</button>
                         </form></div>
-                        <div style="float: right; width: 70px;"><a href="/permisions/{{ $user->id }}" class="btn btn-warning">نقش</a></div>
+                        <div style="float: right; width: 70px;"><a href="/admin/permisions/{{ $user->id }}" class="btn btn-warning">نقش</a></div>
                     </td>
                 </tr>
                 @endforeach

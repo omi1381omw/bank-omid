@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\BankAccontController;
+use App\Http\Controllers\Admin\BankAccountController as AdminBankAccountController;
+use App\Http\Controllers\Admin\PermisionController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Customer\UserController as CustomerUserController;
 use App\Http\Controllers\Guest\BankAccountController;
 use App\Http\Controllers\Guest\HomeController;
@@ -35,16 +40,17 @@ Route::middleware('auth')
     });
 
 // Admin
-Route::middleware('auth, admin')
+Route::middleware(['auth', 'admin'])
     ->prefix('admin')
+    ->name('admin.')
     ->group(function () {
         // Users
-        Route::get('/users', [UserController::class, 'index'])->name('users.index');
-        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-        Route::post('/users', [UserController::class, 'store'])->name('users.store');
-        Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
-        Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+        Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [AdminUserController::class, 'create'])->name('users.create');
+        Route::post('/users', [AdminUserController::class, 'store'])->name('users.store');
+        Route::get('/users/{id}', [AdminUserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{id}', [AdminUserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('users.destroy');
 
         // Permision
         Route::get('/permisions/{id}', [PermisionController::class, 'show'])->name('permisions.show');
@@ -60,10 +66,10 @@ Route::middleware('auth, admin')
         Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
 
         // Bank accounts
-        Route::get('/bank_accounts', [BankAccontController::class, 'index'])->name('bank_accounts.index');
-        Route::get('/bank_accounts/create', [BankAccontController::class, 'create'])->name('bank_accounts.create');
-        Route::post('/bank_accounts', [BankAccontController::class, 'store'])->name('bank_accounts.store');
-        Route::get('/bank_accounts/{id}', [BankAccontController::class, 'edit'])->name('bank_accounts.edit');
-        Route::put('/bank_accounts/{id}', [BankAccontController::class, 'update'])->name('bank_accounts.update');
-        Route::delete('/bank_accounts/{id}', [BankAccontController::class, 'destroy'])->name('bank_accounts.destroy');
+        Route::get('/bank_accounts', [AdminBankAccountController::class, 'index'])->name('bank_accounts.index');
+        Route::get('/bank_accounts/create', [AdminBankAccountController::class, 'create'])->name('bank_accounts.create');
+        Route::post('/bank_accounts', [AdminBankAccountController::class, 'store'])->name('bank_accounts.store');
+        Route::get('/bank_accounts/{id}', [AdminBankAccountController::class, 'edit'])->name('bank_accounts.edit');
+        Route::put('/bank_accounts/{id}', [AdminBankAccountController::class, 'update'])->name('bank_accounts.update');
+        Route::delete('/bank_accounts/{id}', [AdminBankAccountController::class, 'destroy'])->name('bank_accounts.destroy');
     });
