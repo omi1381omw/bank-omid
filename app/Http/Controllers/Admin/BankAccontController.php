@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\BankAccountOpenRequest;
 use App\Http\Requests\BankAccountStoreRequest;
 use App\Http\Requests\BankAccountUpdateRequest;
