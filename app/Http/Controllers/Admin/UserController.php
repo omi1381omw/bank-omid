@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
-use App\Http\Requests\UserRegisterAuthRequest;
+use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Jobs\UserGoodbyJob;
-use App\Jobs\UserLoginJob;
-use App\Jobs\WelcomeUserJob;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -17,26 +15,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function login()
-    {
-        return view('users.login');
-    }
-
-    public function auth(UserLoginRequest $request)
-    {
-        $inputs = $request->validated();
-
-        $success = Auth::attempt(['mobile' => $inputs['mobile'], 'password' => $inputs['password']]);
-
-        if(!$success) {
-            return view('users.login', ['error' => 'mobile or password is invalid']);
-        }
-
-        UserLoginJob::dispatch(Auth::user());
-
-        return redirect('/');
-    }
-
     public function logout()
     {
         $user = Auth::user();
@@ -44,24 +22,6 @@ class UserController extends Controller
         Auth::logout();
 
         UserGoodbyJob::dispatch($user);
-
-        return view('welcome');
-    }
-
-    public function register()
-    {
-        return view('users.register');
-    }
-
-    public function registerAuth(UserRegisterAuthRequest $request)
-    {
-        $inputs = $request->validated();
-
-        $user = User::firstOrCreate($inputs);
-
-        Auth::login($user);
-
-        WelcomeUserJob::dispatch($user);
 
         return view('welcome');
     }

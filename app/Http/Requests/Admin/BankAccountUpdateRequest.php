@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleUpdateRequest extends FormRequest
+class BankAccountUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,11 @@ class RoleUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'slug' => 'required|max:100',
-            'name' => 'required|max:200|',
+            'type'=> 'required|numeric',
+            'account_number' => 'required|max:24',
+            'sheba' => 'required|max:24|unique:bank_accounts,sheba,' . $this->id,
+            'cart' => 'required|max:16|unique:bank_accounts,cart,' . $this->id,
+            'balance' => 'required|max:200',
         ];
     }
 }

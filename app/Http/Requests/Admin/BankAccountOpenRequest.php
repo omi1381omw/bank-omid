@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserStoreRequest extends FormRequest
+class BankAccountOpenRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,20 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:100',
+            'type'=> 'required|numeric',
+            'name' => 'required|min:10',
             'email' => 'required|max:200|email|unique:users,email',
             'mobile' => 'required|max:11|unique:users,mobile',
             'national_code' => 'required|max:11',
-            'password' => 'required|min:8'
+            'password' => 'required|min:8',
         ];
     }
-
+    
     public function messages()
     {
         return [
-            'password.min' => 'رمز باید حداقل ۸ کاراکتر یا بیشتر باشد'
+            'name.min' => 'نام باید حداقل 10 کارکتر باشد',
+            'email.unique' => 'ایمیل تکراری است'
         ];
     }
 }

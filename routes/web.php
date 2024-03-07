@@ -1,10 +1,7 @@
 <?php
 
-use App\Http\Controllers\BankAccontController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PermisionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*

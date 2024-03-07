@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Guest;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserUpdateRequest extends FormRequest
+class UserRegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,17 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
-            'email' => 'required|max:200|email|unique:users,email,' . $this->id,
-            'mobile' => 'required|max:11|unique:users,mobile,' . $this->id,
-            'national_code' => 'required|max:11|unique:users,mobile,' . $this->id,
+            'email' => 'required|max:200|email|unique:users,email',
+            'mobile' => 'required|max:11|unique:users,mobile',
+            'national_code' => 'required|max:11',
             'password' => 'required|min:8'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'password.min' => 'رمز باید حداقل ۸ کاراکتر یا بیشتر باشد'
         ];
     }
 }
